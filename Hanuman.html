@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jai bajrangbali</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hanuman {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            z-index: 2;
+            animation: glow 3s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% {
+                filter: drop-shadow(0 0 10px orange);
+            }
+            100% {
+                filter: drop-shadow(0 0 30px orange);
+            }
+        }
+
+        .hanuman svg {
+            fill: none;
+            stroke: orange;
+            stroke-width: 2;
+            stroke-dasharray: 800;
+            stroke-dashoffset: 800;
+            animation: draw 4s linear forwards;
+        }
+
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: radial-gradient(circle, rgba(255,140,0,0.1), black);
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: orange;
+            border-radius: 50%;
+            animation: float 5s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+    h1{
+        color: rgb(240, 229, 229);
+    }
+    </style>
+</head>
+<body>
+    <div class="background-animation">
+        <!-- Floating circles animation -->
+    </div>
+    <div class="hanuman">
+        <center><img src="Hanuman.jpeg">
+        <h1>jai bajrangbali</h1></center>
+        
+    </div>
+
+    <script>
+        const background = document.querySelector('.background-animation');
+
+        function createFloatingCircles() {
+            const circle = document.createElement('div');
+            circle.classList.add('circle');
+            const size = Math.random() * 30 + 10;
+            const left = Math.random() * 100;
+
+            circle.style.width = `${size}px`;
+            circle.style.height = `${size}px`;
+            circle.style.left = `${left}%`;
+            circle.style.animationDuration = `${Math.random() * 3 + 3}s`;
+
+            background.appendChild(circle);
+
+            setTimeout(() => {
+                circle.remove();
+            }, 5000);
+        }
+
+        setInterval(createFloatingCircles, 200);
+    </script>
+</body>
+</html>
